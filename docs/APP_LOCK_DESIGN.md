@@ -14,20 +14,19 @@ Require a separate user-created ArthTrail secret before the local finance vault 
 6. On each unlock, verify the user locally, unwrap/use the vault key through the platform-protected key path, and only then open the database.
 
 ## Native Android design
-- Build with React Native + Expo native builds. No Capacitor and no website WebView wrapper.
-- Use SQLCipher-enabled Expo SQLite in a native build for the local database. Verify the database cannot be read from copied raw files without the key.
+- Build the Android app with Flutter native builds. No Capacitor, no Web App and no WebView wrapper.
+- Use a reviewed SQLCipher-compatible SQLite package in a native Flutter build. Verify the database cannot be read from copied raw files without the key.
 - Generate a cryptographically random vault key. Protect/wrap it with a key derived from the user secret using a reviewed KDF and a unique random salt. Do not use the short PIN directly as a database encryption key.
 - Keep the unwrapping key material in Android Keystore-backed storage where supported. Require user authentication for key use where the platform configuration supports it.
 - Biometric unlock must use Android's system prompt / supported local-auth API. Biometrics do not mean fingerprint data is read or stored by ArthTrail.
 - Apply progressive delays after repeated failures. Do not add an insecure 'reset lock' shortcut that decrypts the old vault from Firebase.
 
-## Web design and honest limitations
-- Use IndexedDB with Web Crypto encryption and careful key lifecycle handling.
-- Apply strict CSP, no third-party scripts on the finance origin, careful dependency review, and XSS protection.
-- A browser-based app does not have the same guarantee as a hardware-backed Android Keystore. An XSS or malicious same-origin script may access data while the browser vault is unlocked; disclose that limitation and test against it.
-
+## Other native platforms
+- The first implementation targets Android. Later native targets must use the operating system's appropriate secure key store and platform authentication APIs.
+- Do not claim identical hardware-backed guarantees across platforms until each native target has been tested.
+- A browser application is not in scope and must not be built as a fallback.
 ## True passkeys vs local app lock
-A FIDO/WebAuthn passkey is a public-key authentication credential stored by a credential provider and validated with a server challenge. A user-typed app PIN/passphrase is not a FIDO passkey. ArthTrail's immediate requirement is the separate local Vault Lock. True passkey-based account login may be added later only after the complete browser/native and server/provider flow has been verified.
+A FIDO/WebAuthn passkey is a public-key authentication credential stored by a credential provider and validated with a server challenge. A user-typed app PIN/passphrase is not a FIDO passkey. ArthTrail's immediate requirement is the separate local Vault Lock. True platform-passkey sign-in may be added later only after a native-only provider/device flow has been verified.
 
 ## Recovery and backup
 - Backup has its own password/key; do not silently reuse the local app secret.
