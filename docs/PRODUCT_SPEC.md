@@ -189,7 +189,7 @@ Store schema migrations as versioned scripts. Use typed fields and constraints f
 Set up repo, theme tokens, navigation and fake demo data. No real financial records, backend database or paid feature. English/Gujarati/Hindi, light/dark, and several accent colors work.
 
 ### M1 — local finance vault
-Build the Android local store, workspace separation, accounts, categories, manual income/expense/transfer and tested currency-safe calculations. No Web App target is planned. Android database uses SQLCipher in a native build; never assume Expo Go proves SQLCipher works.
+Build the Android local store, workspace separation, accounts, categories, manual income/expense/transfer and tested currency-safe calculations. No Web App target is planned. Verify the selected SQLCipher-compatible Flutter/native package in an actual native Android build.
 Acceptance: data survives restart; transfer is not counted as income/expense; ₹0.10 + ₹0.20 = ₹0.30 exactly; cross-workspace tests pass; test data can be reset.
 
 ### M2 — app lock and storage protection
