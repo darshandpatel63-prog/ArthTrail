@@ -18,7 +18,6 @@ Protect against:
 
 Residual risks to explain honestly:
 - A rooted/compromised device, malware running with accessibility or screen-capture privileges, or a malicious OS can observe data while the vault is open.
-- A Web App can be exposed by same-origin XSS or a compromised dependency; browser-only storage does not provide the same hardware-backed isolation as a native mobile key store.
 - If users deliberately share or upload a backup, the recipient/selected provider receives the data or encrypted file respectively.
 - Losing the vault secret and all backup/recovery material may make data permanently unrecoverable.
 
@@ -33,20 +32,15 @@ Use Firebase Authentication for sign-in identity, verified email, Google sign-in
 - Use constant-time verification where applicable; progressive delay and rate limiting after failures; no detailed failure reason that leaks secret state.
 - Never log, transmit, store in plaintext or back up the vault secret.
 - Provide biometric unlock only as a convenience secured by platform APIs and a proper wrapped-key design. If biometrics change or the OS invalidates the key, fall back to the local secret/recovery flow.
-- A true WebAuthn/FIDO passkey is a cryptographic account-authentication credential, not the same as a typed local app-lock code. Do not call the PIN a FIDO passkey. Implement true passkey sign-in separately only after the server/provider path is verified.
+- A true platform/FIDO passkey is a cryptographic authentication credential, not the same as a typed local app-lock code. Do not call the PIN a FIDO passkey. Implement true passkey sign-in separately only after the server/provider path is verified.
 
 ## 4. Data encryption and key management
 ### Android
-- Use an encrypted SQLite database through SQLCipher in a native build. Expo Go does not prove SQLCipher support; use a development/release build and test encryption end-to-end.
+- Use an encrypted SQLite database through a reviewed SQLCipher-compatible Flutter/native package. Test encryption end-to-end in an actual native Android build.
 - Generate a random high-entropy database/vault key. Do not derive the database key directly from a short PIN.
 - Protect key wrapping with Android Keystore-backed facilities/secure storage; where supported, require local device authentication to use/unlock the key.
 - Keep keys out of AsyncStorage, plain SQLite, logs, GitHub, build logs, app constants and screenshots.
 - On logout, lock and clear transient in-memory secrets; never silently delete the local vault unless the user confirms.
-
-### Web
-- Store data in IndexedDB and encrypt sensitive payloads with Web Crypto. Keep cryptographic keys non-exportable where appropriate and design passphrase-derived key handling carefully.
-- Use a strict Content Security Policy, no remote third-party scripts in the finance origin, no eval/unsafe-eval, pinned/reviewed dependencies, output escaping and tests for XSS.
-- Explain that same-origin script compromise could still access a vault while unlocked; browser security is not identical to a hardware-backed native key.
 
 ### Backup encryption
 - Encrypt locally before file write or Drive upload with authenticated encryption (e.g. AES-256-GCM) and a reviewed password KDF with a unique random salt.
@@ -96,7 +90,7 @@ Review Firebase project settings, app-check/rules if any Firebase data service i
 - Cross-workspace and cross-user isolation tests for view/create/edit/export/delete.
 - App lock: correct secret, wrong secret, failure rate limit, background lock, biometric cancellation/failure, process restart, key invalidation and recovery behavior.
 - Storage: inspect copied app files and confirm database records are unreadable without authorized key material.
-- Web XSS/CSP tests and no-third-party-script checks.
+- Build-configuration checks that no Web App/Flutter Web output or WebView wrapper is introduced.
 - Import: malformed/oversized files, duplicate imports, bad encodings, date/number locales, formula injection and atomic rollback.
 - Backup: correct/wrong password, tampered archive, wrong schema version, partial/corrupt archive, low storage and rollback.
 - Sharing: expired/replayed/guessed/revoked token, unauthorized workspace, changed role, host disconnect and reconnection.
@@ -110,7 +104,7 @@ If a suspected leak or unauthorized access is found: disable the affected integr
 ## 12. Security references
 - OWASP MASVS: https://mas.owasp.org/MASVS/
 - Android Keystore: https://developer.android.com/privacy-and-security/keystore
-- Expo SQLite / SQLCipher: https://docs.expo.dev/versions/latest/sdk/sqlite/
-- Expo SecureStore: https://docs.expo.dev/versions/latest/sdk/securestore/
-- Expo LocalAuthentication: https://docs.expo.dev/versions/latest/sdk/local-authentication/
+- Flutter platform support: https://docs.flutter.dev/reference/supported-platforms
+- Flutter Android integration: https://docs.flutter.dev/platform-integration/android
+- Android Biometrics: https://developer.android.com/identity/sign-in/biometric-auth
 - Android passkeys: https://developer.android.com/identity/passkeys
