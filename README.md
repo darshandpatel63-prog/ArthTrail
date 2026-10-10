@@ -6,7 +6,7 @@
 
 - **No Capacitor. No Web App. No WebView wrapper.** Build native-capable applications only. Initial target: Android; other native platforms follow after the core vault is stable.
 - The repository is public to support the GitHub Actions build workflow. Public visibility does not make the project open source or grant a general license to reuse/distribute the app; see `LICENSE`.
-- Public repositories using standard GitHub-hosted runners have free Actions minutes under GitHub's current policy, but this is **not unlimited**: concurrency, run-duration, queue, storage/artifact and other service limits still apply. Larger runners and external services may cost money.
+- GitHub currently states that standard GitHub-hosted runners are free and unlimited for public repositories. Workflow duration, queue, concurrency, API, artifact/storage and acceptable-use limits still apply; larger runners and external services may cost money. Re-check the official policy because it can change.
 - Financial records, statements, invoices, balances, reports and receipts remain on the user's device by default.
 - Firebase Authentication is for identity and email verification only; do not store finance data in Firebase services.
 - No third-party AI API receives financial data. AI is a later phase and stays disabled until a local/on-device design and tests are approved.
@@ -16,7 +16,7 @@
 
 ## Current documentation
 
-- `BLUEPRINT.md` — full product and engineering blueprint.
+- `blueprint.md` — full product and engineering blueprint.
 - `LICENSE` — proprietary software license draft; third-party dependencies retain their own licenses.
 - `SECURITY.md` — security policy and threat model.
 - `docs/PRODUCT_SPEC.md` — features, schema, UX and milestones.
