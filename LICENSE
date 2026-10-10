@@ -1,0 +1,40 @@
+AR T H T R A I L  —  PROPRIETARY SOFTWARE LICENSE
+Copyright (c) 2026 darshandpatel63-prog. All rights reserved.
+
+1. OWNERSHIP
+ArthTrail, including its source code, UI, product documentation, original graphics, branding, and other original materials in this repository (the “Software”), is proprietary and is not offered under an open-source license.
+
+2. LIMITED PERMISSION
+Subject to applicable law and GitHub's Terms of Service, you may view the repository and use GitHub features that allow viewing, cloning, or forking the repository. This limited permission is only for repository access and collaboration through GitHub. It does not grant a general license to use the Software as a product or service.
+
+3. RESTRICTIONS
+Except where mandatory law or GitHub's Terms of Service expressly provide otherwise, you may not, without prior written permission from the copyright holder:
+(a) use, deploy, run, sell, sublicense, or commercially exploit the Software or a substantial part of it as an application or service;
+(b) distribute, publish, repackage, or provide copies of the Software or modified versions outside permitted GitHub repository functions;
+(c) create or distribute derivative products based on the Software;
+(d) remove copyright, proprietary, or attribution notices; or
+(e) use the ArthTrail name, logo, or branding to imply endorsement or affiliation.
+
+4. CONTRIBUTIONS
+Unless a separate written contributor agreement says otherwise, submitting a contribution does not transfer ownership of the contributor's original material. Do not submit third-party material or contributions that you are not authorized to license. The project owner may decline or remove contributions.
+
+5. THIRD-PARTY MATERIAL
+Third-party libraries, frameworks, fonts, icons, and other dependencies are governed by their own licenses. This license does not override those terms. Dependency notices must be preserved where required.
+
+6. NO WARRANTY
+THE SOFTWARE AND ALL MATERIALS ARE PROVIDED “AS IS”, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EXPRESS OR IMPLIED, TO THE MAXIMUM EXTENT PERMITTED BY LAW. THE COPYRIGHT HOLDER IS NOT LIABLE FOR CLAIMS OR DAMAGES ARISING FROM USE OF THE SOFTWARE, TO THE MAXIMUM EXTENT PERMITTED BY LAW.
+
+7. NO FINANCIAL OR SECURITY GUARANTEE
+ArthTrail is a financial record-keeping tool concept. It is not a bank, financial adviser, tax adviser, auditor, or guarantee of accounting or regulatory compliance. Security claims must be based on implemented controls and testing; no software can be guaranteed to be unhackable.
+
+8. TERMINATION
+Permission under this notice terminates if you materially violate its restrictions, subject to any rights that cannot legally be terminated. Sections intended by their nature to survive will survive.
+
+9. CONTACT AND PERMISSIONS
+For written permission or licensing enquiries, contact the repository owner through the GitHub account associated with this repository.
+
+10. GOVERNING LAW
+Any governing-law or dispute clause for a commercial license should be set in a separately reviewed written agreement. This notice does not attempt to override mandatory local law.
+
+NOTICE
+This is a practical draft for the repository, not jurisdiction-specific legal advice. Have a qualified lawyer review it before commercial distribution. A public GitHub repository cannot guarantee secrecy: people can see its contents, and GitHub's Terms of Service may permit viewing and forking. Never commit signing keys, API secrets, private user data, bank statements, or other confidential production materials.
