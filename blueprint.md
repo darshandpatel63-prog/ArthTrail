@@ -433,7 +433,7 @@ Security rules for CI:
 
 ## 21. Milestones
 ### M0 — documentation and CI guardrails
-Complete repository docs, proprietary license, native-only platform rule, threat model and initial CI workflow plan. No real user data. Exit: documents agree and no Web App/Capacitor commitment remains.
+Complete repository docs, proprietary license, native-only platform rule, threat model and the first GitHub Actions CI workflow. No real user data. Exit: documentation CI passes and no Web App/Capacitor commitment remains.
 
 ### M1 — Flutter Android skeleton and design system
 Create the Flutter app under `app/`, native Android target only, navigation shell, design tokens, English/Gujarati/Hindi localization scaffolding, light/dark themes, fake demo data and basic CI. Exit: static analysis, widget tests and Android debug build pass.
