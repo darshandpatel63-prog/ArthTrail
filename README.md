@@ -27,6 +27,10 @@
 
 Flutter native app targets are planned so one codebase can serve Android and later iOS/Windows/macOS/Linux. Do not enable Flutter Web. No browser financial app is planned. The first development milestone is a native Android project and automated CI checks.
 
+## Automated checks
+
+`.github/workflows/ci.yml` checks required documentation and native-only guardrails on pushes and pull requests. Flutter format/analyze/tests and debug APK build are automatically enabled when `app/pubspec.yaml` is added. Until then, the workflow intentionally skips application tests/builds because no app source exists.
+
 ## Status
 
 Documentation and design only at this stage. No app screens, encrypted vault, Firebase setup, APK or security test has yet been implemented or verified.
