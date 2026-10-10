@@ -3,7 +3,7 @@
 **Status:** Draft 1.1 — specification only; application code is not implemented yet.
 **Repository:** https://github.com/darshandpatel63-prog/ArthTrail
 **Initial cash budget:** ₹0 target. Use local storage, free tooling and open source; never enable a billable service without the owner's explicit decision.
-**Hard requirement:** Do not use Capacitor. Android must be a real React Native/Expo native app, not a website wrapped in a WebView.
+**Hard requirements:** No Capacitor, no Web App, no Flutter Web, and no WebView wrapper. Android is a real installable Flutter native app; additional native app targets follow after Android is stable.
 
 ## 1. Product mission
 ArthTrail is a privacy-first, local-first financial manager for people, families, farmers, freelancers, shops and businesses. It will track household expenses, multiple workspaces, company books, bank-statement imports, cash, budgets, invoices, loans, assets, charts and later on-device intelligence.
@@ -19,24 +19,24 @@ ArthTrail is a privacy-first, local-first financial manager for people, families
 8. No paid database, server, AI API or relay is required by the initial version. ₹0 is the build target, not a promise that every future feature will always be free.
 
 ## 3. Platform and repository architecture
-- Android: React Native + Expo with native builds/modules. Do not use Capacitor, WebView shells or a website-to-app wrapper.
-- Web: separate browser client/PWA using IndexedDB and Web Crypto. Browser storage is not equivalent to a hardware-backed Android vault; clearly explain this difference.
-- Android data: SQLite encrypted with SQLCipher. Store key material through Android Keystore-backed secure storage, gated by the local lock/biometric design.
-- Web data: IndexedDB protected with Web Crypto and a strong key-derivation design. Reduce same-origin/XSS risk with strict CSP, no third-party page scripts, dependency review and security tests.
-- Shared logic: TypeScript domain package for currency-safe arithmetic, transaction rules, parsers, validation, analytics calculations and i18n types.
-- Firebase: authentication only; email/password with email verification and/or Google sign-in. Keep billing disabled unless explicitly approved.
-- No cloud database of financial records in the first release.
+- Android first: Flutter/Dart, with native Android capabilities for local encryption, Keystore-backed key protection, biometrics and lifecycle-aware locking.
+- Other devices later: evaluate native Flutter targets for iOS, Windows, macOS and Linux. Each target must pass platform-specific security and build tests before release.
+- No browser application, PWA, Flutter Web output, website wrapper or WebView shell.
+- Local data: encrypted SQLite/SQLCipher through a reviewed Flutter/native package; verify actual encryption in a native build.
+- Key protection: Android Keystore-backed storage where available; other native platforms use the platform's appropriate secure key store.
+- Shared code: Dart domain packages for money-safe calculations, ledger rules, validation, statement parsing, report calculation and translations.
+- Firebase Authentication: account identity and email verification only; financial records never go to Firestore, Realtime Database, Cloud Storage or Analytics by default.
+- No cloud database of financial transactions in the first release.
 
-Suggested monorepo:
-apps/web/ — Next.js/TypeScript browser app
-apps/mobile/ — Expo React Native Android app
-packages/domain/ — money, ledger, validations and calculations
-packages/import-engine/ — local statement parsing and duplicate detection
-packages/backup-format/ — encrypted archive and restore
-packages/i18n/ — English, Gujarati and Hindi, then additional languages
-packages/ui-tokens/ — themes, spacing, typography and design tokens
-docs/ — product spec, security, schema, sharing, import and test plans
-
+Suggested structure:
+app/ — Flutter app, Android first and native platform folders only
+packages/arthtrail_domain/ — money, ledger, validation and calculations
+packages/arthtrail_storage/ — local encrypted storage and migrations
+packages/arthtrail_import_engine/ — local statement parsing and duplicate detection
+packages/arthtrail_backup/ — encrypted archive and restore
+packages/arthtrail_security/ — vault-key boundary and security abstractions
+packages/arthtrail_reports/ — chart and report calculations
+docs/ — product spec, threat model, schema, sharing and test plans
 ## 4. Authentication and the app's own passkey
 Separate the following concepts:
 - Account authentication: Firebase login, email verification, reset/recovery and optional Google sign-in.
@@ -189,7 +189,7 @@ Store schema migrations as versioned scripts. Use typed fields and constraints f
 Set up repo, theme tokens, navigation and fake demo data. No real financial records, backend database or paid feature. English/Gujarati/Hindi, light/dark, and several accent colors work.
 
 ### M1 — local finance vault
-Build Android and Web local stores, workspace separation, accounts, categories, manual income/expense/transfer and tested currency-safe calculations. Android database uses SQLCipher in a native build; never assume Expo Go proves SQLCipher works.
+Build the Android local store, workspace separation, accounts, categories, manual income/expense/transfer and tested currency-safe calculations. No Web App target is planned. Android database uses SQLCipher in a native build; never assume Expo Go proves SQLCipher works.
 Acceptance: data survives restart; transfer is not counted as income/expense; ₹0.10 + ₹0.20 = ₹0.30 exactly; cross-workspace tests pass; test data can be reset.
 
 ### M2 — app lock and storage protection
@@ -211,9 +211,9 @@ Run security review, import fuzz tests, backup restore tests and real-device tes
 The ₹0 target is most plausible for local-first features, open-source dependencies and free development tools. It cannot guarantee free domains, app-store registration, OAuth verification, remote relay, hosted AI/OCR or provider quotas forever. Do not make the core app depend on those services.
 
 ## 14. Official technical references to re-check
-- Expo LocalAuthentication: https://docs.expo.dev/versions/latest/sdk/local-authentication/
-- Expo SQLite / SQLCipher: https://docs.expo.dev/versions/latest/sdk/sqlite/
-- Expo SecureStore: https://docs.expo.dev/versions/latest/sdk/securestore/
+- Flutter platform support: https://docs.flutter.dev/reference/supported-platforms
+- Flutter Android integration: https://docs.flutter.dev/platform-integration/android
+- Android Keystore: https://developer.android.com/privacy-and-security/keystore
 - Android Keystore: https://developer.android.com/privacy-and-security/keystore
 - Firebase Authentication: https://firebase.google.com/docs/auth/
 - Google Drive appDataFolder (hidden): https://developers.google.com/workspace/drive/api/guides/appdata
