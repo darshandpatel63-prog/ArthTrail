@@ -111,7 +111,7 @@ If a suspected leak or unauthorized access is found: disable the affected integr
 
 ## 13. Additional controls for AI, rules, interests, chat and offline sync
 
-### AI system (built, provider disabled until Ritav.ai)
+### AI subsystem design (not bundled until Ritav.ai is ready)
 - Create an isolated provider interface, typed tool registry, workspace-scoped context builder, local conversation memory, permissions, policy gates and disabled UI state. Keep real model initialization behind a hard production-off switch.
 - No third-party AI endpoint receives account transactions, imported statements, reports, balances, invoices, interest agreements or chats.
 - AI tools are allowlisted and call validated domain services; never expose SQL/database handles, shell execution or unrestricted file/network access.
