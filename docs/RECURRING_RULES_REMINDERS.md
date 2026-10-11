@@ -124,3 +124,12 @@ Sensitive message bodies and financial amounts should not be copied into general
 - Android background restrictions: https://developer.android.com/develop/background-work/background-tasks/bg-work-restrictions
 - Google Play SMS/Call Log policy: https://support.google.com/googleplay/android-developer/answer/10208820
 - Keep external messaging adapters disabled until current provider policies and prices are re-checked.
+
+## 11. Provider/policy references to re-check before implementation
+- Android persistent/background work: https://developer.android.com/develop/background-work/background-tasks/persistent
+- Android background restrictions: https://developer.android.com/develop/background-work/background-tasks/bg-work-restrictions
+- Google Play SMS/Call Log policy: https://support.google.com/googleplay/android-developer/answer/10208820
+- WhatsApp Business Platform pricing: https://developers.facebook.com/docs/whatsapp/pricing
+- WhatsApp Cloud API: https://developers.facebook.com/docs/whatsapp/cloud-api/
+
+Provider pricing, policies, consent requirements and platform restrictions can change. Do not enable automatic external messaging until these sources and the chosen provider contract have been reviewed.
