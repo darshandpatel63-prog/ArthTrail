@@ -41,6 +41,11 @@
 - Granular workspace/module/record/action permissions; peer/device-host offline sync; optional self-hosted server; planned end-to-end encrypted team chat.
 - No third-party SMS/WhatsApp API: reminders open the user's native SMS compose screen or installed WhatsApp with a prefilled draft; the user sends from their own number/account. Any carrier charge follows the user's plan. Optional direct SMS is only considered if OS permissions and distribution policy allow it.
 
+## Latest planning additions
+- Competitor-informed priorities: fast transaction templates/copy, split entries, local receipt attachments, flexible budgets/envelopes, savings goals, net worth, debt payoff scenarios, subscription calendar, deterministic insights, contextual in-app help, reconciliation suggestions and safer backup/restore.
+- Business roadmap: quotes-to-invoices, credit/partial payments, AR/AP ageing, inventory movement, source evidence and tighter CA/auditor controls.
+- Legal/platform boundary: messages must not impersonate the user; default flow opens native compose/WhatsApp draft and user sends. Tax/GST results remain unverified until reviewed. Do not ship any feature just because another app lists it; prioritise testable, secure value.
+
 ## Next development milestone
 1. Implement Flutter Android shell, navigation and design system using synthetic data only.
 2. Add recurring-rules and calculator UI scaffolding. Keep AI design in its separate spec; do not add AI navigation/module until the Ritav integration milestone.
