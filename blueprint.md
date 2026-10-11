@@ -505,7 +505,7 @@ This blueprint is the planned target, not a claim that implementation, security 
 
 This addendum extends the existing blueprint without removing earlier features. Clarification: specify the complete AI architecture, UI, policies, tools and tests now, but do not add or bundle the AI module/screen in the current ArthTrail app. Implement and integrate the separate AI subsystem only after Ritav.ai is actually ready and reviewed. No model/provider is connected now.
 
-## 25. Complete AI subsystem now; Ritav integration later
+## 25. AI subsystem fully specified now; Ritav integration later
 
 Follow docs/AI_SYSTEM_DESIGN.md as the complete design contract. It specifies an isolated AI package, model-neutral provider interface, capability/status model, workspace-scoped context builder, allowlisted finance tool registry, policy/confirmation gates, local conversation/memory store, audit metadata and polished chat UX. Do not add the package, route or AI UI to the current app bundle.
 
