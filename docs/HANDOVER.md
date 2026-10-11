@@ -1,52 +1,61 @@
 # ArthTrail — Handover
 
-## Current state
+## Current project state
 - Repository: https://github.com/darshandpatel63-prog/ArthTrail
 - Default branch: main
 - Working branch: feature/secure-foundation
-- Current pull request is documentation-only: https://github.com/darshandpatel63-prog/ArthTrail/pull/1
+- Draft PR: https://github.com/darshandpatel63-prog/ArthTrail/pull/1
 - Full blueprint: blueprint.md
-- Product spec: docs/PRODUCT_SPEC.md
-- Proprietary license: LICENSE
-- Security requirements: SECURITY.md
-- Vault Lock design: docs/APP_LOCK_DESIGN.md
-- No app source code, Firebase project configuration, APK, test suite or security control has been implemented or verified yet.
+- Product specification: docs/PRODUCT_SPEC.md
+- Security policy: SECURITY.md
+- App Lock design: docs/APP_LOCK_DESIGN.md
+- AI architecture: docs/AI_SYSTEM_DESIGN.md
+- Recurrence/interest/reminder rules: docs/RECURRING_RULES_REMINDERS.md
+- Device sync and chat: docs/MULTI_DEVICE_SYNC.md
+- CA/enterprise accounting: docs/ACCOUNTING_CA_ENTERPRISE.md
+- Proprietary licence: LICENSE
+- GitHub Actions workflow: .github/workflows/ci.yml
+- Current work includes planning, documentation and documentation CI only. The app source, Vault Lock, encrypted ledger, Firebase configuration, AI runtime, sharing/chat engine and APK are not yet implemented.
 
 ## Decisions that must not change without approval
-- Product name: ArthTrail.
-- Initial spending target: ₹0.
-- The GitHub repository stays public for standard GitHub Actions builds, but ArthTrail remains proprietary and is not open source.
-- Native installable apps only. Android first; other native targets may follow.
+- Product name is ArthTrail.
+- Build-budget target is ₹0; no paid service, relay or provider without explicit approval.
+- Repository is public for the workflow; ArthTrail is proprietary, not open source.
+- Native/installable app only. Android first, later other native device targets.
 - No Web App, no Flutter Web, no Capacitor and no WebView wrapper.
-- Use Flutter/Dart unless a documented technical blocker justifies a reviewed change.
-- Financial data stays local by default. Firebase Authentication is for identity/email verification only.
-- No finance records to third-party AI APIs; AI is a late, on-device-only phase unless the privacy decision is explicitly changed.
-- Build a separate user-created ArthTrail Vault Lock/passphrase or strong PIN plus optional device biometrics. Never send the lock secret to a server.
-- Backups and sharing are explicit exceptions; encrypt before upload/transfer and show the destination.
-- Prioritize security and exact financial arithmetic over feature count.
+- Flutter/Dart is the planned implementation stack.
+- Financial records stay local by default. Firebase Authentication handles identity/verification only.
+- Build AI architecture, UI, tools, permissions and tests, but keep model/provider disabled until Ritav.ai is ready and security-reviewed. No outside AI API receives finance data.
+- Separate user-created Vault Lock/passphrase or strong PIN plus optional OS biometric; never send the lock secret to a server.
+- Statements are downloaded and imported locally; no direct bank API in initial scope.
+- Backups, Drive and device sharing are explicit user-approved exceptions; encrypt before upload/transfer.
+- Recurring rules, interest, payments and reminders are deterministic algorithms with auditable events; do not rely on AI for accounting arithmetic.
 
-## Next milestone
-1. Add the minimal Flutter native project under app/ and enable only Android initially.
-2. Add CI in GitHub Actions for format check, static analysis, unit tests and Android debug APK build.
-3. Create polished UI scaffolding using synthetic demo data, English/Gujarati/Hindi, System/Light/Dark modes, accent palettes and accessible text sizes.
-4. Add Dart domain types and tests for money-safe transactions before persistent financial data is allowed.
-5. Implement and test the Vault Lock and encrypted local database before importing real statements.
+## Feature expansions now in plan
+- Complete AI framework and UI scaffold now; later connect the actual Ritav provider behind a hard-off switch.
+- Smart recurring household/business entries: multiple vendors/times/quantities/prices, milk/vegetable examples and one-tap notification confirmation where secure.
+- Interest agreements with explicit rate basis and simple/compound rules; partial, early, late and backdated payments; person-specific reminders.
+- In-app floating quick calculator plus accessible color themes, text styles, screen-reader support and English/Gujarati/Hindi.
+- CA mode, professional ledger/reports, client workspace isolation, audit workflows and the pathway to larger enterprise use.
+- Granular workspace/module/record/action permissions; peer/device-host offline sync; optional self-hosted server; planned end-to-end encrypted team chat.
+- External SMS/WhatsApp sends remain user-confirmed and provider integrations stay disabled until policy and cost review.
 
-## Definition of done for the first code milestone
-- Flutter Android app builds without Capacitor or WebView.
-- No Web App/Flutter Web target is built.
-- CI runs on GitHub and its actual result is reviewed.
-- No real bank data, user finance records, signing keys or credentials appear in the repo or artifacts.
-- Exact-money arithmetic and transfer accounting tests pass.
-- Demo data is synthetic and can be reset.
-- No remote finance database, AI API, ads or relay is enabled.
+## Next development milestone
+1. Implement Flutter Android shell, navigation and design system using synthetic data only.
+2. Add the recurring, calculator and AI-disabled UI entry points as honest UI scaffolding.
+3. Create the Dart domain layer and tests for exact money, transfers, journal balance, recurring occurrences, interest vectors and workspace permissions.
+4. Implement and test Vault Lock plus encrypted local storage before importing any real financial statement.
+5. Extend GitHub Actions so all non-physical tests run automatically and the native Android debug APK is built.
 
-## Testing policy
-Use GitHub Actions for every test that can be reliably automated: formatting, analysis, unit/property tests, database and import tests, backup corruption tests, permission tests, dependency/license checks and native build jobs. Real-device biometrics, OEM background behavior, camera scanning and device-specific file providers must be marked as pending until they are tested physically.
+## Automated vs physical testing
+Use CI for format/static analysis, unit/property tests, import parsers, ledger invariants, reminder scheduling logic, interest formulas, permissions, AI-off/network-egress checks, sync/conflict/replay tests, backup/restore corruption tests, UI widgets, localizations and Android builds. Tests use synthetic data.
+
+Physical-only tests (actual Android Keystore/biometric behavior, OEM notification timing, camera QR scanning, real device-to-device networking, background/reboot behavior and restoring on a different physical device) must remain marked pending until performed on hardware. Never claim they passed based on mocks.
 
 ## Working rules
-- Use small commits and feature branches; do not make unreviewed changes straight to main.
-- Keep this file updated after each meaningful milestone.
-- Never state that a test/build passed unless its result is visible and reviewed.
-- Review dependency code/license and network/telemetry behavior before adding packages.
-- Never add a paid service or enable billing without the owner's explicit approval.
+- Use feature branches and small reviewable commits; do not merge unreviewed changes straight to main.
+- Keep the main blueprint and relevant specialized docs consistent after every design change.
+- Keep secrets, private user data and real bank statements out of GitHub and CI artifacts.
+- Report tests by their real status: passed, failed, skipped or pending.
+- Avoid adding a dependency until its license, maintenance, security and network/telemetry behavior have been checked.
+- Preserve a clear path for users to export and leave any sharing/server mode.
