@@ -44,3 +44,11 @@ A FIDO/WebAuthn passkey is a public-key authentication credential stored by a cr
 - Raw database copied to another device is unreadable without valid authorized key material.
 - App logs/network requests contain no Vault Lock secret or key.
 - Backup recovery and Vault Lock rotation do not corrupt the only copy of the vault.
+
+## Vault Lock interactions with quick actions and future Ritav AI
+- The floating in-app calculator must not receive the vault key or automatically save its result. Copying a result into a financial field requires a deliberate tap.
+- A notification action such as “Yes, as planned” must be idempotent. By default, if the vault is locked, queue only a minimal pending confirmation and require unlock before committing the financial record. Users may explicitly enable a quicker action only after its threat model and native-device behavior are tested.
+- Notification previews should not reveal loan amounts, personal balances, lender/borrower details or private notes on a locked screen by default.
+- Future AI UI may show a lock-aware disabled/unavailable state while the vault is closed. It must not retain the vault key just because a chat is open, and must not process financial context until the vault is unlocked and the user is authorized for the selected workspace.
+- When Ritav is later connected, the vault key and raw database must never be sent to it. Provide only the minimum derived context or tool result needed for an approved question, under the AI policy and current workspace permissions.
+- Chat history and AI memory remain local encrypted workspace data; deleting them must be available without deleting accounting records. If a shared device/host is selected, show the sharing destination and apply the same lock and membership rules.
