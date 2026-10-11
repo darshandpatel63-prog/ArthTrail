@@ -1,6 +1,6 @@
 # ArthTrail — Product Specification
 
-**Status:** Draft 1.1 — specification only; application code is not implemented yet.
+**Status:** Draft 2.0 — expanded specification only; application code is not implemented yet.
 **Repository:** https://github.com/darshandpatel63-prog/ArthTrail
 **Initial cash budget:** ₹0 target. Use local storage, free tooling and open source; never enable a billable service without the owner's explicit decision.
 **Hard requirements:** No Capacitor, no Web App, no Flutter Web, and no WebView wrapper. Android is a real installable Flutter native app; additional native app targets follow after Android is stable.
@@ -218,3 +218,83 @@ The ₹0 target is most plausible for local-first features, open-source dependen
 - Firebase Authentication: https://firebase.google.com/docs/auth/
 - Google Drive appDataFolder (hidden): https://developers.google.com/workspace/drive/api/guides/appdata
 - Android passkeys: https://developer.android.com/identity/passkeys
+
+---
+
+# Product Specification Addendum — V2 requirements (2026-10-11)
+
+This addendum is additive: it retains all previous scope and adds the user's latest requirements. For the detailed contract, refer to the linked design documents.
+
+## A. AI system architecture is part of the app; live AI is deferred
+
+Build the full AI subsystem structure, screen/UI, provider abstraction, permission engine, local context builder, tool registry, local conversation store, audit hooks and automated tests now. The real provider/model remains disabled until Ritav.ai is ready and reviewed.
+
+- No third-party AI provider, AI API key, cloud model, hosted vector DB or finance-data API upload now.
+- Use a mock provider only inside tests; never present mock answers as real AI.
+- Production default: AI runtime off. Disabled state is visible and honest.
+- Future Ritav adapter must be isolated and versioned; verify authentication, capabilities, local/remote execution, privacy, prompt-injection resistance and permissions before connecting.
+- AI reports must use deterministic local report/calculation tools. AI-generated write actions are drafts; the user previews and approves them.
+- No arbitrary SQL, shell, payment execution, permission changes or silent transaction posting from an agent.
+- Source: docs/AI_SYSTEM_DESIGN.md.
+
+## B. Deterministic recurring-rules engine
+
+Add configurable household, office and business routines without using AI for the accounting calculation. Milk is one example; the engine must support other repeated goods, services and obligations.
+
+- Multiple vendors/items and multiple daily entries per rule family.
+- Different units, price per unit, actual quantity, discounts/configured tax, different prices by vendor/date, and custom one-off changes.
+- Notification actions: Yes/as planned, Change, Different item/vendor, Skip, Not received and Record later.
+- Stable occurrence IDs to prevent double-entry on repeated notification taps, import or sync.
+- An unanswered reminder is not a purchase/payment. A skipped reminder produces no financial transaction.
+- Additional routine templates: rent/utilities, groceries, office supplies, raw materials, inventory, service, staff costs, invoices, project/farm costs, installments, insurance and renewal dates.
+- Source: docs/RECURRING_RULES_REMINDERS.md.
+
+## C. Interest, lending/borrowing and actual repayments
+
+Each agreement stores parties, direction, principal/currency, start and maturity dates, rate plus explicit basis (annual/monthly/weekly/daily/custom), simple/compound method, compounding interval, day-count convention, repayment schedule and payment allocation policy.
+
+Support partial, early, late, missed, over-, under- and backdated payment records. Interest is calculated by a deterministic, versioned formula and shown with a breakdown. Never guess the time basis of a percentage, silently apply a penalty, or overwrite the agreement history. Users can choose who receives which reminders and pause disputed obligations.
+
+## D. Messages and payment reminders
+
+Create reminders for the owner, selected team members or a configured counterparty. Support several lead times, selected local times, quiet hours, snooze and bounded overdue reminders.
+
+First release: local notifications and user-confirmed message drafts. Open the default SMS app or WhatsApp with a prefilled message, then require the sender to check the number/text and press Send. Keep automatic SMS/WhatsApp sending disabled until platform policy, recipient consent, template/provider requirements and costs are reviewed. Never disclose debt information on a lock screen by default.
+
+## E. Calculator and app accessibility
+
+Add a floating/collapsible in-app Quick Calculator available on ordinary app pages by default. It supports arithmetic, percentage, quantity × unit price, discounts, configurable tax arithmetic, EMI estimates, simple/compound interest and date difference. Results only enter a form after the user taps to copy; calculations never post silently.
+
+This is not an Android Accessibility Service and needs no global overlay permission. Essential accessibility (semantics, screen-reader labels, contrast, large touch targets, clear errors and OS text scaling) is enabled by default. Settings can change text size, themes, reduced-motion preference and the optional calculator bubble. Other optional convenience features are not all switched on by default.
+
+## F. Accounting, Chartered Accountants and large organizations
+
+Simple Mode remains friendly for home/family users. Advanced Accounting Mode targets businesses and CAs: chart of accounts, journal vouchers, balanced double entry, general ledger, trial balance, P&L, balance sheet, cash flow, bank reconciliation, invoices/credit notes/partial payments, receivable/payable aging, inventory, fixed assets, depreciation policy, fiscal periods, locking/reopening, cost centres, branches, projects, multi-currency, approvals, audit history and source documents.
+
+CA features: separate client workspaces, time-limited access, reviewer/preparer roles, document requests, exceptions, draft adjustment journals, owner approvals and audit-ready exports. Never give a CA access to all clients by default. Tax/GST/TDS/payroll/statutory features must be reviewed against current requirements and by qualified professionals before claiming compliance.
+
+Enterprise roadmap should cover subsidiaries, intercompany entries, consolidation, segregation of duties, thresholds, read-only audit role and customer-managed server mode. This is a scalable product direction, not a claim that a single mobile database can process unlimited/trillion-scale workloads. Larger deployments need benchmarks and their own hosting/operations, which may not be free.
+
+- Source: docs/ACCOUNTING_CA_ENTERPRISE.md.
+
+## G. Fine-grained permissions and device collaboration
+
+Sharing is scoped by workspace type—home, family, farm, project, client, company/business or other user-defined type—and then by module, record and action. The owner can independently grant view/create/edit-own/edit-all/reverse/approve/export/manage/share permissions for balances, transactions, recurring items, loans/interest, invoices, reports, inventory, assets, sensitive salary/partner records, chat, attachments, backup and AI tools.
+
+Modes: local-only, encrypted file transfer, same-LAN sync, trusted device host, peer sync when reachable and optional self-hosted server. A disconnected device queues signed/identified operations locally and syncs when it can reach a trusted peer/host. Internet coming back does not guarantee immediate delivery if no peer is reachable. Use idempotent changes, append-only posted ledger events, reversals and explicit conflict handling. Never use generic last-write-wins for financial postings.
+
+Future direct/group chat should use workspace membership, end-to-end encrypted messages/attachments where implemented, offline queues and delivery state. Finance tools inside chat use the same permission engine; chat does not bypass role checks. Source: docs/MULTI_DEVICE_SYNC.md.
+
+## H. Expanded automated tests
+
+In addition to all previous tests, CI should automate:
+- Milk/recurring action idempotency, multiple vendors/daily occurrences, changed quantity and backfill.
+- Variable unit-price arithmetic, unit conversions, rounding and date/time boundaries.
+- Interest vectors for annual/monthly/weekly rates, simple/compound, leap year, partial/early/late/backdated and overpayments.
+- Permissions by workspace/module/record/action, including CA client isolation.
+- Offline queue, reconnect, replay, conflict, revocation, host loss and chat attachment permission.
+- AI runtime disabled/no-network, mock provider labeling, tool allowlist, prompt injection and confirmation gates.
+- Calculator widget, notifications, localization and accessibility semantics.
+- All existing ledger/import/backup/restore/security tests stay in place.
+
+Physical-only tests (real biometrics/Keystore, OEM background notifications, QR camera and real peer networking) remain pending until actual devices are used; do not simulate them as passed.
