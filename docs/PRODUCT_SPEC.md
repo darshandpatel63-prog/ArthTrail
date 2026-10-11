@@ -298,3 +298,33 @@ In addition to all previous tests, CI should automate:
 - All existing ledger/import/backup/restore/security tests stay in place.
 
 Physical-only tests (real biometrics/Keystore, OEM background notifications, QR camera and real peer networking) remain pending until actual devices are used; do not simulate them as passed.
+
+
+## I. Competitor-informed usability features
+
+See `docs/COMPETITOR_FEATURE_REVIEW.md` for the dated source review, rationale, priorities and legal/platform boundaries. Add the following to the existing requirements without removing any previously specified feature:
+
+- **Fast entry:** favourite templates, copy a previous transaction, recent payees/categories, and duplicate-entry warnings.
+- **Split transaction:** allocate one payment/receipt among multiple categories, projects or cost centres without counting the account movement twice. Support custom tags and saved search/filter views.
+- **Evidence:** attach receipt photo/PDF/files in local encrypted storage. On-device OCR is a later optional feature only; users must review extracted values before saving and documents must not be uploaded to an OCR API by default.
+- **Flexible planning:** overall and category budget periods (weekly, fortnightly, monthly, quarterly, yearly or custom), envelope/fund buckets, savings goals/target dates, budget-vs-actual and remaining-to-spend indicators.
+- **Financial picture:** dated asset/liability/net-worth history; debt payoff scenario calculator; upcoming bills/subscriptions calendar; cash-flow forecast derived from visible scheduled rules; month-on-month comparisons and deterministic alerts with links to source records.
+- **In-app doubt solving:** searchable glossary, contextual help, formula walkthroughs and worked examples at the point of use. Current help must work without the future AI module, external model/API or leaving ArthTrail for routine explanations.
+- **Reconciliation:** propose likely statement-to-ledger matches, duplicates and differences; keep uncertain matches pending for explicit review. Never silently merge uncertain entries or post a guessed transaction.
+- **Record safety:** show source and change history; support safe undo where possible and reversal/adjustment for posted accounting facts; validate backup integrity and offer a restore preview.
+- **Quick access:** optional native home-screen quick-add widget after the secure core ships; redact balances/transaction details from lock-screen and home-screen previews by default.
+
+## J. Professional/business workflow additions
+
+- Quote/estimate → customer approval → invoice → partial payment/credit note → balance due; customer/vendor statements; accounts receivable/payable ageing.
+- Inventory stock movements with units, reorder/low-stock thresholds and source documents; classify expenses against farm, project, branch, client or cost centre.
+- Maker/checker approval, read-only auditor/CA access, client-scoped export, period-close checklist and a reason/audit entry for reopening a closed period.
+- Multi-currency entries must record exchange-rate source/date (or say the rate was user-entered), currency precision and rounding method. Never silently replace a rate.
+
+## K. Scope, privacy and correctness boundaries
+
+- This research identifies feature ideas in other published apps; it does not prove ArthTrail is better or that competitor claims have been independently verified. Re-check sources before launch and prioritise only after usability and security testing.
+- Tax/GST/TDS/payroll/e-invoicing outputs are estimates or recordkeeping support until each current statutory rule and integration is validated by a qualified professional. Show effective date, assumptions and formula; do not claim legal compliance prematurely.
+- Local-first is not a blanket privacy-law exemption. Before distribution, review the applicable DPDP implementation timeline and publish a clear privacy policy, data deletion/export process, consent UX, backup disclosures and incident procedure.
+- No fake/silent message sender and no bypass of OS permission. Default messages open the user's SMS compose screen or WhatsApp draft and are sent by the user after review. Direct SMS permissions are subject to current platform policy; no paid messaging API is assumed.
+- Recordkeeping and user-entered loan calculations do not mean ArthTrail will lend money, execute payments, or provide regulated investment/tax advice. Such regulated features are out of scope unless separately reviewed and authorised.
