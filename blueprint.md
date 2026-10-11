@@ -503,13 +503,13 @@ This blueprint is the planned target, not a claim that implementation, security 
 
 # ArthTrail V2 — Additive Product Expansion (2026-10-11)
 
-This addendum extends the existing blueprint without removing earlier features. Clarification: build the AI architecture, UI scaffold, policy boundaries, local finance-tool integration and automated tests now; keep actual model execution and provider connection disabled until Ritav.ai is ready and reviewed.
+This addendum extends the existing blueprint without removing earlier features. Clarification: specify the complete AI architecture, UI, policies, tools and tests now, but do not add or bundle the AI module/screen in the current ArthTrail app. Implement and integrate the separate AI subsystem only after Ritav.ai is actually ready and reviewed. No model/provider is connected now.
 
 ## 25. Complete AI subsystem now; Ritav integration later
 
-Build and follow docs/AI_SYSTEM_DESIGN.md. Include an isolated AI package, model-neutral provider interface, capability/status model, workspace-scoped context builder, allowlisted finance tool registry, policy/confirmation gates, local conversation/memory store, audit metadata and polished chat UI scaffold.
+Follow docs/AI_SYSTEM_DESIGN.md as the complete design contract. It specifies an isolated AI package, model-neutral provider interface, capability/status model, workspace-scoped context builder, allowlisted finance tool registry, policy/confirmation gates, local conversation/memory store, audit metadata and polished chat UX. Do not add the package, route or AI UI to the current app bundle.
 
-- Initially use deterministic local tools and a mock provider for tests only. Never present mock output as real AI.
+- When the Ritav integration milestone begins, use deterministic local tools and a mock provider for that module's tests only. Never present mock output as real AI.
 - AI production runtime/provider stays disabled by default. Do not add a third-party AI SDK, remote AI key, hosted vector database or finance-data upload now.
 - The app must honestly show “AI not connected yet”; it must not invent answers.
 - AI tools call existing report/accounting services, never arbitrary SQL. Read-only tools may summarize authorized data; changes become drafts requiring review and confirmation.
