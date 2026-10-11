@@ -83,9 +83,11 @@ Every reminder supports multiple lead times (for example 7 days, 1 day and at du
 
 ### Message channels
 - In-app notification and local Android notification: first choice and designed to work without cloud service.
-- SMS: the first version opens the phone's default messaging app with recipient and text prefilled, and the user taps Send. Do not read SMS or send silently. Direct programmatic SMS can trigger sensitive-permission/Google Play default-handler restrictions; do not request those permissions for a simple finance tracker without a reviewed policy path.
-- WhatsApp: open a WhatsApp conversation/deep link with a user-approved prefilled message, where supported; the user reviews and taps Send.
-- Automated WhatsApp Business Platform messaging is a separate integration, with account/provider setup, user consent/template requirements and potentially per-message charges. Keep disabled under the ₹0 launch target unless the owner explicitly approves fees and compliance work.
+- **No messaging API or paid messaging provider is planned.** ArthTrail uses the user's own phone and installed messaging app, SIM/mobile plan or WhatsApp account. It does not send from ArthTrail's server and does not pay a per-message API fee.
+- **SMS (default):** at the scheduled time, show an ArthTrail notification. Tapping it opens the phone's native SMS compose screen with the selected recipient and message prefilled; the user checks it and taps Send. The recipient sees the user's normal SIM/phone number. Carrier/SMS charges, if any, follow the user's own mobile plan—not an ArthTrail API bill.
+- **WhatsApp:** open the installed WhatsApp conversation with a prefilled draft where supported. The user reviews and presses Send from their own WhatsApp account. This is not the WhatsApp Business API.
+- **Optional direct SMS mode:** investigate only as a separate Android-native capability after implementation. It must be opt-in, disclose that SMS is sent from the user's SIM/number, require the relevant OS permission and comply with the distribution channel's current rules. If platform policy or the device prevents it, fall back to the native compose screen. Never impersonate another sender, bypass OS permission/consent, or promise silent auto-send on every device.
+- No paid messaging API is required for the default user-confirmed flow. WhatsApp availability depends on the app being installed and the device/account being usable.
 - External messages can reveal debt or financial details to someone else. Show recipient name/number, message preview and confirm before sending. Never send a reminder to the wrong person because a contact changed.
 - Scheduled external auto-send is not promised in the free version. Use scheduled local reminders that require user approval to open/send the message.
 
@@ -125,7 +127,13 @@ Sensitive message bodies and financial amounts should not be copied into general
 - Google Play SMS/Call Log policy: https://support.google.com/googleplay/android-developer/answer/10208820
 - Keep external messaging adapters disabled until current provider policies and prices are re-checked.
 
-## 11. Provider/policy references to re-check before implementation
+## 11. Calculator and math accessibility tools
+- The in-app Quick Calculator must be reachable from ordinary screens through a clearly labelled floating bubble and a consistent toolbar/accessibility action. Users can open it without losing the current form's draft.
+- Add math tools: arithmetic, percentages, ratio/proportion, quantity × unit price, unit conversions, discount/markup, configured tax arithmetic, split bill, profit margin, break-even estimate, EMI, simple/compound interest, date/period difference, outstanding balance and rounding. Clearly label estimates and formulas; don't claim tax/legal certification.
+- Each tool must support keyboard/screen-reader navigation, labelled inputs, spoken result labels, readable contrast, large touch targets and text scaling. The bubble must not cover Save/Confirm/Delete or keyboard controls. User explicitly taps to copy a result into a form; calculations never post transactions by themselves.
+- Keep the calculator in-app. It must not require the global Android Accessibility Service or draw-over-other-apps permission.
+
+## 12. Provider/policy references to re-check before implementation
 - Android persistent/background work: https://developer.android.com/develop/background-work/background-tasks/persistent
 - Android background restrictions: https://developer.android.com/develop/background-work/background-tasks/bg-work-restrictions
 - Google Play SMS/Call Log policy: https://support.google.com/googleplay/android-developer/answer/10208820
