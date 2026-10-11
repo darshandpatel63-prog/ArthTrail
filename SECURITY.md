@@ -143,8 +143,8 @@ If a suspected leak or unauthorized access is found: disable the affected integr
 - Recurring rules must be previewed and explicitly activated. No unanswered prompt is proof that a product was received or a payment was made.
 - Use stable occurrence IDs and atomically link each confirmed occurrence to at most one transaction.
 - Unit prices and quantities must be normalized safely; reject ambiguous currency/unit conversions instead of guessing.
-- The Quick Calculator is an in-app widget, not a global Accessibility Service or permission to draw over other apps. Calculation does not commit financial data without an explicit user action.
-- For external message drafts, verify recipient number, template and due item in a preview. Do not programmatically send SMS or read messages by default. Avoid SMS permissions unless a separate Android distribution/policy review establishes eligibility.
+- The Quick Calculator and math toolkit are in-app widgets, not a global Accessibility Service or permission to draw over other apps. Provide a labelled bubble and an accessible toolbar action, screen-reader/keyboard support, and ensure the bubble never obscures critical controls. Calculation does not commit financial data without an explicit user action.
+- Do not use a third-party messaging API by default. Use a local reminder that opens the user's native SMS compose screen or installed WhatsApp with a prefilled draft; the user reviews and sends from their own SIM/number or account. No message is sent by ArthTrail's server and any carrier cost follows the user's plan. Optional direct Android-native SMS requires explicit opt-in, OS permission and distribution-policy review; otherwise fall back to compose-and-confirm. Never bypass OS permissions, impersonate another sender or read SMS by default.
 - Contact phone numbers, message drafts and assigned reminders are private financial-adjacent data; encrypt locally and keep them out of logs/analytics.
 
 ### CA / enterprise workspaces
