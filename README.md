@@ -9,7 +9,7 @@
 - GitHub currently states that standard GitHub-hosted runners are free and unlimited for public repositories. Workflow duration, queue, concurrency, API, artifact/storage and acceptable-use limits still apply; larger runners and external services may cost money. Re-check the official policy because it can change.
 - Financial records, statements, invoices, balances, reports and receipts remain on the user's device by default.
 - Firebase Authentication is for identity and email verification only; do not store finance data in Firebase services.
-- No third-party AI API receives financial data. AI is a later phase and stays disabled until a local/on-device design and tests are approved.
+- The complete AI subsystem/UI/tool boundary is planned and documented now, but the real model/provider remains disabled until Ritav.ai is ready and reviewed. No third-party AI API receives financial data.
 - ArthTrail has its own user-created Vault Lock/passphrase, separate from account login; the secret is never sent to a server or logged.
 - Backups and device sharing are explicit user-approved exceptions: encrypt locally before any upload/transfer and clearly display the destination.
 - Never claim security features have passed until tests actually run and logs/results are reviewed.
@@ -22,6 +22,10 @@
 - `docs/PRODUCT_SPEC.md` — features, schema, UX and milestones.
 - `docs/APP_LOCK_DESIGN.md` — local Vault Lock design.
 - `docs/HANDOVER.md` — current status and next step.
+- `docs/AI_SYSTEM_DESIGN.md` — AI framework/UI/tools, disabled until Ritav.ai is ready.
+- `docs/RECURRING_RULES_REMINDERS.md` — household and business routines, interest and reminders.
+- `docs/MULTI_DEVICE_SYNC.md` — device-as-host, offline peer sync, chat and self-hosting.
+- `docs/ACCOUNTING_CA_ENTERPRISE.md` — professional accounting and CA workflows.
 
 ## Platform direction
 
@@ -33,7 +37,7 @@ Flutter native app targets are planned so one codebase can serve Android and lat
 
 ## Status
 
-Documentation and design only at this stage. No app screens, encrypted vault, Firebase setup, APK or security test has yet been implemented or verified.
+Documentation, architecture and the initial CI workflow only at this stage. The Flutter app, encrypted vault, Firebase setup, AI runtime, peer sync/chat and APK have not yet been implemented or verified.
 
 ## Important limitations
 
