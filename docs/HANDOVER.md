@@ -36,10 +36,10 @@
 - Complete AI architecture and UI design now; do not ship AI module/screens in the current app. Implement and integrate them only with the approved Ritav integration milestone.
 - Smart recurring household/business entries: multiple vendors/times/quantities/prices, milk/vegetable examples and one-tap notification confirmation where secure.
 - Interest agreements with explicit rate basis and simple/compound rules; partial, early, late and backdated payments; person-specific reminders.
-- In-app floating quick calculator plus accessible color themes, text styles, screen-reader support and English/Gujarati/Hindi.
+- In-app floating quick calculator and math toolkit (percentages, ratios, units, unit-price totals, discounts, tax arithmetic, EMI, interest, margins, break-even and date differences), plus accessible color themes, text styles, screen-reader support and English/Gujarati/Hindi.
 - CA mode, professional ledger/reports, client workspace isolation, audit workflows and the pathway to larger enterprise use.
 - Granular workspace/module/record/action permissions; peer/device-host offline sync; optional self-hosted server; planned end-to-end encrypted team chat.
-- External SMS/WhatsApp sends remain user-confirmed and provider integrations stay disabled until policy and cost review.
+- No third-party SMS/WhatsApp API: reminders open the user's native SMS compose screen or installed WhatsApp with a prefilled draft; the user sends from their own number/account. Any carrier charge follows the user's plan. Optional direct SMS is only considered if OS permissions and distribution policy allow it.
 
 ## Next development milestone
 1. Implement Flutter Android shell, navigation and design system using synthetic data only.
