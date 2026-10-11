@@ -1,7 +1,7 @@
 # ArthTrail AI System — Architecture and Security Design
 
 **Status:** architecture/design specification only. No AI model is connected and no AI-powered financial response is currently implemented.
-**Decision:** Build the complete AI subsystem, UI, permissions, local finance-tool integration and tests as an isolated module, but keep the runtime disabled until Ritav.ai is ready and has been reviewed. Do not connect a third-party model/API in the meantime.
+**Decision:** Fully specify the AI subsystem, UI, permissions, local finance-tool integration and security tests as a separate future module. Do not build, bundle, register or show that module in the current app. When Ritav.ai is ready and reviewed, implement the isolated module and then integrate it into ArthTrail. Do not connect a third-party model/API in the meantime.
 
 ## 1. Product goal
 ArthTrail should have a complete AI architecture and UX plan now so Ritav.ai can be connected later without redesigning accounting, security, tool permissions or chat. The current app must not show, bundle or register the AI UI/module. When Ritav is ready, implement the separate module with deterministic local tools and a mock provider used only for its development/tests; it must never pretend that mock responses are real AI.
