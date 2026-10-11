@@ -9,7 +9,7 @@
 - GitHub currently states that standard GitHub-hosted runners are free and unlimited for public repositories. Workflow duration, queue, concurrency, API, artifact/storage and acceptable-use limits still apply; larger runners and external services may cost money. Re-check the official policy because it can change.
 - Financial records, statements, invoices, balances, reports and receipts remain on the user's device by default.
 - Firebase Authentication is for identity and email verification only; do not store finance data in Firebase services.
-- The complete AI subsystem/UI/tool boundary is planned and documented now, but the real model/provider remains disabled until Ritav.ai is ready and reviewed. No third-party AI API receives financial data.
+- The complete AI subsystem/UI/tool/security design is documented separately, but the AI module and screens will not be added to the current app until Ritav.ai is ready and reviewed. No third-party AI API receives financial data.
 - ArthTrail has its own user-created Vault Lock/passphrase, separate from account login; the secret is never sent to a server or logged.
 - Backups and device sharing are explicit user-approved exceptions: encrypt locally before any upload/transfer and clearly display the destination.
 - Never claim security features have passed until tests actually run and logs/results are reviewed.
