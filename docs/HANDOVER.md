@@ -26,7 +26,7 @@
 - No Web App, no Flutter Web, no Capacitor and no WebView wrapper.
 - Flutter/Dart is the planned implementation stack.
 - Financial records stay local by default. Firebase Authentication handles identity/verification only.
-- Build AI architecture, UI, tools, permissions and tests, but keep model/provider disabled until Ritav.ai is ready and security-reviewed. No outside AI API receives finance data.
+- Specify the full AI architecture/UI/tool/security plan now, but do not add AI screens or module to the current app. Implement and integrate it only when Ritav.ai is ready and security-reviewed. No outside AI API receives finance data.
 - Separate user-created Vault Lock/passphrase or strong PIN plus optional OS biometric; never send the lock secret to a server.
 - Statements are downloaded and imported locally; no direct bank API in initial scope.
 - Backups, Drive and device sharing are explicit user-approved exceptions; encrypt before upload/transfer.
@@ -43,7 +43,7 @@
 
 ## Next development milestone
 1. Implement Flutter Android shell, navigation and design system using synthetic data only.
-2. Add the recurring, calculator and AI-disabled UI entry points as honest UI scaffolding.
+2. Add recurring-rules and calculator UI scaffolding. Keep AI design in its separate spec; do not add AI navigation/module until the Ritav integration milestone.
 3. Create the Dart domain layer and tests for exact money, transfers, journal balance, recurring occurrences, interest vectors and workspace permissions.
 4. Implement and test Vault Lock plus encrypted local storage before importing any real financial statement.
 5. Extend GitHub Actions so all non-physical tests run automatically and the native Android debug APK is built.
