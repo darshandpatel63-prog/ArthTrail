@@ -4,9 +4,11 @@
 **Decision:** Build the complete AI subsystem, UI, permissions, local finance-tool integration and tests as an isolated module, but keep the runtime disabled until Ritav.ai is ready and has been reviewed. Do not connect a third-party model/API in the meantime.
 
 ## 1. Product goal
-ArthTrail must contain an AI architecture that can later connect to Ritav.ai without redesigning accounting, security, chat UI or permissions. The AI subsystem may be built and tested now with deterministic local tools and a mock provider used only for development/testing. It must not pretend that mock responses are real AI.
+ArthTrail should have a complete AI architecture and UX plan now so Ritav.ai can be connected later without redesigning accounting, security, tool permissions or chat. The current app must not show, bundle or register the AI UI/module. When Ritav is ready, implement the separate module with deterministic local tools and a mock provider used only for its development/tests; it must never pretend that mock responses are real AI.
 
 ## 2. Runtime switches
+
+These switches are requirements for the future separate AI module. Do not add them to the current app release or bundle until the Ritav integration milestone.
 - `ARTH_TRAIL_AI_UI_ENABLED`: controls whether the AI screen/entry point is visible. Initially false in production builds.
 - `ARTH_TRAIL_AI_RUNTIME_ENABLED`: hard kill switch. Initially false. If false, no model is initialized and no prompts/financial context are passed to any provider.
 - `ARTH_TRAIL_AI_PROVIDER`: enum with `disabled`, `mock_test`, and future `ritav_local` / `ritav_approved_host`. Production must reject `mock_test` as a real assistant.
@@ -76,7 +78,7 @@ Each tool must declare name, version, input schema, required permission, allowed
 - Provider failure, timeouts, invalid output or disabled runtime must fail closed. Financial features remain usable without AI.
 - Add tests proving that AI disabled means provider initialization count is zero and no context leaves the local process.
 
-## 8. AI UX and design
+## 8. Future AI UX and design (not in current app navigation)
 - AI page with a clear disabled/ready state, no fake responses and an explicit explanation that it will connect to Ritav only after activation.
 - Suggested question chips: `Summarize this month`, `Explain this report`, `Compare selected workspaces`, `What payments are due?`—disabled until the provider is connected.
 - Response cards show answer, source period/workspace, calculation provenance, assumptions and a `View records` action.
@@ -97,8 +99,8 @@ Each tool must declare name, version, input schema, required permission, allowed
 - The privacy description is updated before enabling any remote-context mode.
 
 ## 10. Implementation order
-1. Create the AI domain types, provider interface, policy and tests without a live model.
-2. Build the AI screen and disabled state, then the chat UI and source cards with synthetic fixtures.
+1. Keep this specification separate from the current app; prepare the AI domain types, provider interface, policy and tests for the future module.
+2. When Ritav integration is approved, build the AI screen, chat UI and source cards in the separate module using synthetic fixtures; only then connect it to app navigation.
 3. Connect only deterministic read-only ArthTrail tools and test scope isolation.
 4. Add draft-and-confirm actions behind the tool policy; keep AI runtime disabled.
 5. When Ritav.ai is ready, review and add the isolated adapter; do not change finance storage to make AI work.
