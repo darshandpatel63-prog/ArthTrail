@@ -44,6 +44,7 @@ jobs:
             docs/RECURRING_RULES_REMINDERS.md
             docs/MULTI_DEVICE_SYNC.md
             docs/ACCOUNTING_CA_ENTERPRISE.md
+            docs/COMPETITOR_FEATURE_REVIEW.md
           )
           for file in "${required_files[@]}"; do
             if [ ! -s "$file" ]; then
