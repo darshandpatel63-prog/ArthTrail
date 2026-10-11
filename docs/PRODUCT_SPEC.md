@@ -87,7 +87,7 @@ Vault design requirements:
 ### Settings and languages
 - Languages at launch: English, Gujarati and Hindi. Design translation files so Marathi, Bengali, Tamil, Telugu and Spanish can be added later.
 - Appearance: System, Light, Dark; accent palettes such as Teal, Indigo, Emerald, Amber, Rose and high contrast.
-- Text size: Small, Default, Large, Extra Large. Respect the device's accessibility settings.
+- Text size: Small, Default, Large, Extra Large, controlled within ArthTrail. Do not require users to change phone-wide accessibility settings.
 - Preferences: currency, date/time and number formats, first day of week, app lock, privacy, local files, backup destination, devices/sharing, data export and delete.
 
 ## 6. Logical database schema
@@ -263,9 +263,9 @@ Create reminders for the owner, selected team members or a configured counterpar
 
 ## E. Calculator and app accessibility
 
-Add a floating/collapsible in-app Quick Calculator available on ordinary app pages by default, accessible from a labelled bubble and a consistent accessibility/toolbar action. Include arithmetic, percentage, ratio/proportion, quantity × unit price, unit conversion, discounts/markup, configurable tax arithmetic, bill split, profit margin, break-even estimate, EMI, simple/compound interest, date difference, outstanding balance and rounding. Label assumptions/formulas and estimates. Inputs/results must work with screen readers, keyboard navigation, large touch targets and OS text scaling. The bubble must not cover Save/Confirm/Delete or keyboard controls. Results only enter a form after the user explicitly taps to copy; calculations never post silently.
+Add a floating/collapsible in-app Quick Calculator available on ordinary app pages by default, accessible from a labelled bubble and a consistent accessibility/toolbar action. Include arithmetic, percentage, ratio/proportion, quantity × unit price, unit conversion, discounts/markup, configurable tax arithmetic, bill split, profit margin, break-even estimate, EMI, simple/compound interest, date difference, outstanding balance and rounding. Label assumptions/formulas and estimates. Inputs/results must support screen readers, keyboard/focus navigation where applicable, large touch targets and text scaling controlled within ArthTrail. The bubble must not cover Save/Confirm/Delete or keyboard controls. Results only enter a form after the user explicitly taps to copy; calculations never post silently.
 
-This is not an Android Accessibility Service and needs no global overlay permission. Essential accessibility (semantics, screen-reader labels, contrast, large touch targets, clear errors and OS text scaling) is enabled by default. Settings can change text size, themes, reduced-motion preference and the optional calculator bubble. Other optional convenience features are not all switched on by default.
+This is not an Android Accessibility Service and needs no global overlay permission. Essential **in-app accessibility** (semantics, screen-reader labels, contrast, large touch targets, clear errors and app-controlled text scaling) is enabled by default. Settings can change ArthTrail's text size, themes, reduced-motion preference and optional calculator bubble; these settings must not modify the phone's system-wide settings. Other optional convenience features are not all switched on by default.
 
 ## F. Accounting, Chartered Accountants and large organizations
 
