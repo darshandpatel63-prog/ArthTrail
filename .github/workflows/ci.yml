@@ -40,6 +40,10 @@ jobs:
             docs/PRODUCT_SPEC.md
             docs/HANDOVER.md
             docs/APP_LOCK_DESIGN.md
+            docs/AI_SYSTEM_DESIGN.md
+            docs/RECURRING_RULES_REMINDERS.md
+            docs/MULTI_DEVICE_SYNC.md
+            docs/ACCOUNTING_CA_ENTERPRISE.md
           )
           for file in "${required_files[@]}"; do
             if [ ! -s "$file" ]; then
@@ -53,6 +57,10 @@ jobs:
             echo 'Keep a single canonical blueprint.md file; do not add BLUEPRINT.md as a duplicate.'
             exit 1
           fi
+          grep -qi 'Ritav' docs/AI_SYSTEM_DESIGN.md
+          grep -qi 'interest' docs/RECURRING_RULES_REMINDERS.md
+          grep -qi 'end-to-end' docs/MULTI_DEVICE_SYNC.md
+          grep -qi 'Chartered Accountant' docs/ACCOUNTING_CA_ENTERPRISE.md
           echo 'Required files and proprietary/native-only project markers are present.'
 
       - name: Detect Flutter application
