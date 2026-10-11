@@ -16,6 +16,7 @@
 - Proprietary licence: LICENSE
 - GitHub Actions workflow: .github/workflows/ci.yml
 - Current work includes planning, documentation and documentation CI only. The app source, Vault Lock, encrypted ledger, Firebase configuration, AI runtime, sharing/chat engine and APK are not yet implemented.
+- The latest documentation/guardrail CI run passed: https://github.com/darshandpatel63-prog/ArthTrail/actions/runs/38125814505. App code checks/build were skipped because app/pubspec.yaml does not exist yet.
 
 ## Decisions that must not change without approval
 - Product name is ArthTrail.
