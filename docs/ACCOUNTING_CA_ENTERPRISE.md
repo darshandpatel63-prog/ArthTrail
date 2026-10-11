@@ -101,3 +101,14 @@ Do not switch users to a cloud database without explicit consent. Server mode mu
 
 ## 10. Boundaries
 ArthTrail is record-keeping and management software, not itself a bank, lending service, tax authority, auditor or substitute for professional advice. Interest projections depend on the terms entered by the user. Do not label calculations legally enforceable or compliant without a suitable review.
+
+## 11. Workflow enhancements informed by accounting products
+
+These augment the earlier accounting requirements:
+- Quote/estimate approval and conversion into an invoice, then credit notes, partial payment allocations, customer statements and overdue balance/ageing views.
+- Source-document attachments on invoices, purchases, journals, expenses and reconciliation differences.
+- Inventory movement history, explicit units, reorder threshold and traceable valuation policy.
+- Saved reports and exports scoped to one entity/client; a CA must not receive access to other workspaces by default.
+- Multi-currency exchange-rate source/date and deterministic rounding logs; never silently substitute a rate.
+- User-facing dashboards may show business KPIs but every value must drill through to the underlying ledger/report and disclose its period and assumptions.
+- Tax/GST/e-invoice/return functionality stays labelled as unverified until current official requirements, effective dates, sample vectors, integrations and qualified accountant review are complete.
