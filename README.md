@@ -26,6 +26,7 @@
 - `docs/RECURRING_RULES_REMINDERS.md` — household and business routines, interest and reminders.
 - `docs/MULTI_DEVICE_SYNC.md` — device-as-host, offline peer sync, chat and self-hosting.
 - `docs/ACCOUNTING_CA_ENTERPRISE.md` — professional accounting and CA workflows.
+- `docs/COMPETITOR_FEATURE_REVIEW.md` — reviewed competitor features, product additions, priorities and legal/platform boundaries.
 
 ## Platform direction
 
