@@ -269,9 +269,9 @@ Launch languages: English, Gujarati and Hindi. Structure all UI strings in local
 ### Appearance
 - Theme: System, Light and Dark.
 - Accent palette choices: Teal, Indigo, Emerald, Amber, Rose and a high-contrast mode.
-- Text size: Small, Default, Large and Extra Large; respect OS accessibility settings.
+- Text size: Small, Default, Large and Extra Large, controlled by ArthTrail's own in-app settings; do not rely on changing the phone's system-wide settings.
 - Design tokens for spacing, typography, radius, elevation, chart palettes and semantic colors.
-- Support screen readers, large text, keyboard navigation where applicable, sensible tap targets, focus order, reduced motion and readable error messages.
+- Within ArthTrail itself, support screen readers, app-controlled large text, keyboard navigation where applicable, sensible tap targets, focus order, app-controlled reduced motion and readable error messages. These are app-level features; they must not require users to change mobile-wide accessibility settings.
 - Polished dashboard with clean information hierarchy; avoid making ads visually similar to controls or confirmations.
 
 ### Settings screens
@@ -546,9 +546,9 @@ Users select who receives which reminders, several lead times, preferred local t
 
 Add an in-app floating/collapsible ArthTrail Quick Calculator across ordinary app pages by default. It is an in-app widget—not an Android Accessibility Service and not an always-on-top overlay requiring permission. Users may hide it in Settings; it must not cover Save/Delete/Confirm controls or keyboard content.
 
-Calculator and math tools: arithmetic, percentages, ratio/proportion, quantity × unit price, unit conversion, discounts/markup, user-configured tax arithmetic, bill splitting, profit margin, break-even estimate, EMI estimates, simple/compound interest, date/period differences, outstanding balances and rounding. Provide a labelled floating bubble plus a toolbar/accessibility action. Keep inputs and results screen-reader/keyboard accessible and respect text scaling. Users explicitly tap to copy a result into a form; calculation alone never posts a transaction. Show formulas/assumptions for interest and EMI.
+Calculator and math tools: arithmetic, percentages, ratio/proportion, quantity × unit price, unit conversion, discounts/markup, user-configured tax arithmetic, bill splitting, profit margin, break-even estimate, EMI estimates, simple/compound interest, date/period differences, outstanding balances and rounding. Provide a labelled floating bubble plus a toolbar/accessibility action. Keep inputs and results accessible through ArthTrail's own screen-reader semantics, keyboard/focus support where applicable, app-controlled text scaling and readable contrast. Users explicitly tap to copy a result into a form; calculation alone never posts a transaction. Show formulas/assumptions for interest and EMI.
 
-Essential accessibility is enabled by default: screen-reader labels, semantic controls, sufficient contrast, large touch targets, clear validation, and OS text scaling. Settings can alter text size, accent palette, reduce-motion preference and the optional calculator bubble. Do not enable every optional feature by default and do not request the OS's global Accessibility Service permission for an in-app calculator.
+Essential **in-app accessibility** is enabled by default: meaningful labels/semantics, sufficient contrast, large touch targets, clear validation, and app-controlled text size. ArthTrail Settings can alter text size, theme/accent palette, reduced-motion preference and the optional calculator bubble. These preferences affect ArthTrail only and must not change the phone's system-wide settings. Do not enable every optional feature by default and do not request the OS's global Accessibility Service permission for an in-app calculator.
 
 ## 29. Professional accounting, CA workflows and enterprise roadmap
 
