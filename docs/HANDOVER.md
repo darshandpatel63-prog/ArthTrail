@@ -33,7 +33,7 @@
 - Recurring rules, interest, payments and reminders are deterministic algorithms with auditable events; do not rely on AI for accounting arithmetic.
 
 ## Feature expansions now in plan
-- Complete AI framework and UI scaffold now; later connect the actual Ritav provider behind a hard-off switch.
+- Complete AI architecture and UI design now; do not ship AI module/screens in the current app. Implement and integrate them only with the approved Ritav integration milestone.
 - Smart recurring household/business entries: multiple vendors/times/quantities/prices, milk/vegetable examples and one-tap notification confirmation where secure.
 - Interest agreements with explicit rate basis and simple/compound rules; partial, early, late and backdated payments; person-specific reminders.
 - In-app floating quick calculator plus accessible color themes, text styles, screen-reader support and English/Gujarati/Hindi.
