@@ -574,9 +574,9 @@ Future company chat can support direct/group conversations, encrypted attachment
 
 ## 32. External reminders and messages
 
-Store contact's selected phone/channel, message template, event condition, due date, sending identity and schedule. On trigger, generate a local notification and message draft in the selected language. First release opens the default SMS app or WhatsApp with text prefilled; the user confirms recipient and taps Send. Do not read SMS or silently send it.
+Use the user's own phone and installed SMS/WhatsApp app; do not use a third-party messaging API by default. At trigger time, show a local notification. When tapped, open the native SMS compose screen or a WhatsApp draft with the selected recipient and prefilled text. The user checks the recipient/text and taps Send from their own phone number/account. ArthTrail's server does not send the message and pays no per-message API fee; normal carrier/SMS charges, if any, are governed by the user's phone plan.
 
-Direct programmatic SMS can be restricted under Google Play policies. Official WhatsApp Business Platform messaging needs separate provider/account configuration, consent/templates and may incur charges. Keep automated external messaging disabled under the ₹0 launch target until expressly approved. Never expose a debt amount on the lock screen by default. Notification actions and background delivery are subject to Android battery/OEM limits, so exact delivery time is not guaranteed.
+Do not impersonate the user, spoof a sender or bypass OS permissions. Do not rely on silent programmatic SMS in v1: Google Play restricts SMS/Call Log permissions to approved core use cases and eligible handlers/exceptions. The safer default is the native SMS Intent and user confirmation. A WhatsApp draft/deep link is not the WhatsApp Business Platform API and does not prove a message was sent. Any external message with debt/salary/other sensitive details requires recipient preview and explicit user action. Never show private debt details on the lock screen by default. Android battery/OEM limits mean exact notification timing is not guaranteed.
 
 ## 33. Rules engine acceptance requirements
 
@@ -608,3 +608,34 @@ Implement in GitHub Actions wherever possible, and report actual results rather 
 - docs/RECURRING_RULES_REMINDERS.md — recurring household/business rules, milk/vegetable use cases, interest, repayments and messaging.
 - docs/MULTI_DEVICE_SYNC.md — peer/device-host sync, offline queues, QR roles, chat and self-hosted server.
 - docs/ACCOUNTING_CA_ENTERPRISE.md — professional accounting, CA workflows and enterprise roadmap.
+
+
+## 36. Competitor-informed product enhancements
+
+Use `docs/COMPETITOR_FEATURE_REVIEW.md` as the dated feature benchmark and legal-boundary reference. Preserve the earlier requirements in this blueprint; these are additive recommendations, not a replacement.
+
+Everyday features worth planning:
+- Fast transaction entry through favourites/templates, copy-last-entry, recent payees/categories and duplicate warnings.
+- Split a transaction across categories/projects without double-counting account movement; custom tags, filters, calendar, and searchable notes.
+- Local receipt/photo/PDF attachment, optional on-device OCR only after secure feasibility review and mandatory user verification.
+- Flexible overall/category budgets, envelope/fund planning, savings goals, target-date progress and budget-versus-actual summaries.
+- Net-worth history from assets/liabilities; debt payoff scenario comparisons; recurring bills/subscription calendar and transparent cash-flow forecast.
+- Monthly comparisons and useful deterministic warnings linked to the actual source transactions/rules (not AI claims).
+- Built-in glossary, contextual help and worked examples so users can solve common doubts inside ArthTrail.
+- Local encrypted export/restore, backup validation, clear data-location state, transaction source trace and safe undo/reversal.
+- Optional home-screen quick-add widgets after core security/reliability; do not leak balances or transactions on a shared screen.
+
+Business/CA enhancements:
+- Quote/estimate → approved quote → invoice → partial payments/credit notes → outstanding balance; customer/vendor statements and receivable/payable ageing.
+- Inventory movement, unit-aware stock, low-stock thresholds, expense-to-project/farm/client mapping and source-document attachments.
+- Approvals/maker-checker roles, read-only auditor/CA role, client-scoped exports, period-close checklist and auditable reasons for reopening.
+- Multi-currency only with explicit exchange rate, rate date/source, precision and rounding behavior.
+
+## 37. Feature delivery order and guardrails
+
+- **P0 — trusted foundation:** encrypted ledger/vault, exact money calculations, app lock, statement import preview/mapping, duplicate detection, reconciliation preview, encrypted backup/restore, export/delete, permission tests and in-app accessibility.
+- **P1 — everyday usability:** quick entry/templates, split transactions/tags, local receipts, budgets/envelopes, savings goals, reminders, subscription centre, debt payoff scenarios, guided calculator, reports/exports and contextual help.
+- **P2 — professional books:** invoicing lifecycle, customer/vendor records, part-payments/credit notes, inventory, AR/AP ageing, reconciliation, double-entry reports, period lock, CA workflow and approvals.
+- **P3 — optional after separate feasibility/security approval:** on-device OCR, local speech entry, native home-screen widgets, multi-currency rates, peer/device-host sync, self-hosted mode, workspace chat and eventual Ritav.ai module. The AI module/UI remains absent until Ritav.ai is ready and reviewed; no AI is required for deterministic calculations or current in-app help.
+
+Never claim ArthTrail is uniquely better based on common features alone. Its product hypothesis is the combination of local-first encrypted finance records, family/farm/business workspaces, step-by-step local math/help, deterministic automations, and user-controlled sharing. Test that hypothesis with real usability/security/calculation testing after implementation.
