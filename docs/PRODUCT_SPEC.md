@@ -227,11 +227,11 @@ This addendum is additive: it retains all previous scope and adds the user's lat
 
 ## A. AI system architecture is part of the app; live AI is deferred
 
-Build the full AI subsystem structure, screen/UI, provider abstraction, permission engine, local context builder, tool registry, local conversation store, audit hooks and automated tests now. The real provider/model remains disabled until Ritav.ai is ready and reviewed.
+Specify the full AI subsystem, screen/UI, provider abstraction, permission engine, local context builder, tool registry, local conversation store, audit hooks and tests now. Do not add the AI screen/module to the current app navigation or bundle. Implement and integrate it only when Ritav.ai is actually ready and security-reviewed.
 
 - No third-party AI provider, AI API key, cloud model, hosted vector DB or finance-data API upload now.
-- Use a mock provider only inside tests; never present mock answers as real AI.
-- Production default: AI runtime off. Disabled state is visible and honest.
+- Use a mock provider only inside tests for the future module; never present mock answers as real AI.
+- The current app must have no AI screen/route/runtime. The separate future module has a runtime-off default and an honest not-connected state after integration.
 - Future Ritav adapter must be isolated and versioned; verify authentication, capabilities, local/remote execution, privacy, prompt-injection resistance and permissions before connecting.
 - AI reports must use deterministic local report/calculation tools. AI-generated write actions are drafts; the user previews and approves them.
 - No arbitrary SQL, shell, payment execution, permission changes or silent transaction posting from an agent.
